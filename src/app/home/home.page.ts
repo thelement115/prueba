@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private localNotifications: LocalNotifications) {}
+
+  createNot(){
+    this.localNotifications.schedule({
+      text: 'Delayed ILocalNotification',
+      trigger: {at: new Date(new Date().getTime() + 7600)},
+      led: 'FF0000',
+      sound: null
+   });
+  }
 
 }
